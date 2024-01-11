@@ -1,0 +1,14 @@
+Practice 6 Big Data 
+db.Order.updateOne({status: "in process"}, { $push: { items: 99999}})
+db.Order.updateOne({status: "in process"}, { $pop: { items: 1}})
+db.Order.updateOne({status: "in process"}, { $pull: { items: 100}})
+db.Order.updateOne({status: "in process"}, { $inc: { counter: 100}})
+db.Order.updateOne({status: "in process"}, { $push: { costAr: 100}})
+db.Order.updateOne({status: "in process"}, { $inc: { "costAr.1": 100}})
+
+https://www.mongodb.com/docs/manual/core/document/#std-label-document-dot-notation
+db.Order.updateOne({status: "in process"}, { $inc: { "costAr.$[]": 100}})
+db.Order.find({ costAr: {$all: [300, 200]}})
+db.Order.find({ costAr: [300, 200]})
+db.Order.find({}, {costAr: {$slice: 1}})
+db.Order.find({}, {costAr: {$slice: [1,1]}})

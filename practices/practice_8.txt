@@ -1,0 +1,36 @@
+// Шаг 1: Создание коллекции
+db.createCollection("appliances");
+
+// Шаг 2: Заполнение бытовой техникой (10 записей)
+db.appliances.insertMany([
+  {id: 1, name: "Refrigerator", price: 1200},
+  {id: 2, name: "Washing Machine", price: 800},
+  {id: 3, name: "Microwave Oven", price: 150},
+  {id: 4, name: "Dishwasher", price: 1000},
+  {id: 5, name: "Coffee Maker", price: 80},
+  {id: 6, name: "Blender", price: 50},
+  {id: 7, name: "Toaster", price: 30},
+  {id: 8, name: "Vacuum Cleaner", price: 200},
+  {id: 9, name: "Air Purifier", price: 300},
+  {id: 10, name: "Electric Kettle", price: 40}
+]);
+
+// Шаг 3: Создание функции map
+var mapFunction = function() {
+  emit(this.name, this.price);
+};
+
+// Шаг 4: Создание функции reduce
+var reduceFunction = function(key, values) {
+  return Array.sum(values);
+};
+
+// Шаг 5: Применение функций map-reduce
+var mapReduceResult = db.appliances.mapReduce(
+  mapFunction.toString(),
+  reduceFunction.toString(),
+  { out: "total_prices" }
+);
+
+// Выводим результат
+db.total_prices.find().forEach(printjson);

@@ -1,0 +1,15 @@
+Practice 7 Big Data:
+1) Проверяет, есть ли в строке подстрока "Short" 
+db.Product.find({ name: {$regex: /Short/} }) 
+
+2) Проверяет, начинается ли строка с "Sh"
+db.Product.find({ name: {$regex: /^Sh/} })
+
+3) Проверяет, есть ли пробел перед строкой "short", i- не различать строчные и заглавные символы.
+db.Product.find({ name: {$regex: /\sshort/i} })
+
+4) Это найдет документы с именами вроде "shiTrt", "Tshort", "Sweetshort". Мы ищет продукт с именами, которые содержат буквы "s" и "t" в любом порядке.
+db.Product.find({ name: {$regex: /s.*t|t.*s/i} })
+
+5) Любая последовательность цифробуквенная последовательность после строки "shirt"
+db.Product.find({ name: {$regex: /shirt\w+/i} })

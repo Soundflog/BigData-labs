@@ -1,0 +1,19 @@
+1) db.Product.find().sort({brand: 1})
+
+2) db.Product.find().limit(3)
+
+3) db.Product.find().skip(5)
+
+4) db.Product.find().sort({brand: -1}).limit(3).skip(2)
+
+5) db.Product.find({ price: {$gte: 100, $lte: 500} })
+
+6) db.Product.find({ price: {$gte: 100, $lte: 500} }).sort({brand: -1}).limit(3).skip(2)
+
+7) db.Product.find({ brand: {$ne: "Nike"} })
+
+8) db.Product.find({ price: {$in: [ 555, 666 ] } })
+
+9) db.Product.find( {$or: [ { brand: "Nike" }, { price: {$in: [ 555, 666 ]}} ]})
+
+10) db.Product.find( {$or: [ { brand: "Nike" },{ price: {$in: [ 555, 666 ]}} ]}).sort({price: 1, brand: 1}).limit(5).skip(2)
